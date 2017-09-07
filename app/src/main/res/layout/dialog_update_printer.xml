@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/fragment_update_printer_make"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:inputType="textCapWords"
+        android:layout_marginBottom="317dp"
+        android:maxLength="10"
+        android:hint="@string/hint_printer_make"/>
+
+    <EditText
+        android:id="@+id/fragment_update_printer_model"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:inputType="textCapWords"
+        android:layout_marginTop="39dp"
+        android:maxLength="10"
+        android:hint="@string/hint_printer_model"/>
+
+    <EditText
+        android:id="@+id/fragment_update_printer_serial"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:inputType="textCapCharacters"
+        android:layout_marginTop="78dp"
+        android:maxLength="20"
+        android:hint="@string/hint_printer_serial"/>
+
+    <Spinner
+        android:id="@+id/fragment_update_printer_color"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="126dp"
+        android:layout_marginLeft="130dp"
+        />
+
+
+    <Spinner
+        android:id="@+id/fragment_update_printer_status"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="126dp"
+        android:layout_marginLeft="0dp"
+        />
+
+
+    <EditText
+        android:id="@+id/fragment_update_printer_owner"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:inputType="textCapWords"
+        android:layout_marginTop="150dp"
+        android:maxLength="10"
+        android:hint="@string/hint_printer_owner"/>
+
+    <EditText
+        android:id="@+id/fragment_update_printer_dept"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:inputType="textCapWords"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="190dp"
+        android:maxLength="15"
+        android:hint="@string/hint_printer_dept"/>
+
+    <EditText
+        android:id="@+id/fragment_update_printer_location"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:inputType="textCapWords"
+        android:layout_marginTop="230dp"
+        android:maxLength="15"
+        android:hint="@string/hint_printer_location"/>
+
+    <EditText
+        android:id="@+id/fragment_update_printer_floor"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:inputType="textCapWords"
+        android:layout_marginTop="270dp"
+        android:maxLength="12"
+        android:hint="@string/hint_printer_floor"/>
+
+    <EditText
+        android:id="@+id/fragment_update_printer_ip"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="310dp"
+        android:inputType="number"
+        android:maxLength="3"
+        android:hint="@string/hint_printer_ip"/>
+
+</RelativeLayout>

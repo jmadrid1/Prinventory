@@ -1,0 +1,91 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:gravity="center"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:gravity="center_horizontal">
+
+        <EditText
+            android:id="@+id/fragment_update_toner_make"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:inputType="textCapWords"
+            android:imeOptions="flagNoExtractUi"
+            android:hint="@string/hint_toner_make"/>
+
+        <EditText
+            android:id="@+id/fragment_update_toner_model"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:inputType="textCapWords"
+            android:imeOptions="flagNoExtractUi"
+            android:hint="@string/hint_toner_model"/>
+
+        <Spinner
+            android:id="@+id/fragment_update_toner_color"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="68dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="0dp"
+            />
+
+        <EditText
+            android:id="@+id/fragment_update_toner_tmodel"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:inputType="textCapWords"
+            android:layout_marginTop="95dp"
+            android:imeOptions="flagNoExtractUi"
+            android:hint="@string/hint_toner_tmodel"/>
+
+        <EditText
+            android:id="@+id/fragment_update_toner_black"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="128dp"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="number"
+            android:maxLength="2"
+            android:hint="@string/hint_toner_black"/>
+
+        <EditText
+            android:id="@+id/fragment_update_toner_cyan"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="161dp"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="number"
+            android:maxLength="2"
+            android:hint="@string/hint_toner_cyan"/>
+
+        <EditText
+            android:id="@+id/fragment_update_toner_yellow"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="194dp"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="number"
+            android:maxLength="2"
+            android:hint="@string/hint_toner_yellow"/>
+
+        <EditText
+            android:id="@+id/fragment_update_toner_magenta"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="227dp"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="number"
+            android:maxLength="2"
+            android:hint="@string/hint_toner_magenta"/>
+
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/menu_view_vendor"
+        android:title="@string/context_menu_view_vendor"/>
+
+    <item
+        android:id="@+id/menu_call_vendor"
+        android:title="@string/context_menu_call_vendor"/>
+
+    <item
+        android:id="@+id/menu_msg_vendor"
+        android:title="@string/context_menu_message_vendor"/>
+
+    <item
+        android:id="@+id/menu_edit_vendor"
+        android:title="@string/context_menu_edit_vendor"/>
+
+    <item
+        android:id="@+id/menu_delete_vendor"
+        android:title="@string/context_menu_delete_vendor"/>
+
+</menu>

@@ -1,0 +1,81 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:gravity="center"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:gravity="center_horizontal">
+
+        <EditText
+            android:id="@+id/fragment_add_vendor_name"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:inputType="textCapWords"
+            android:layout_marginTop="0dp"
+            android:imeOptions="flagNoExtractUi"
+            android:maxLength="25"
+            android:hint="@string/hint_vendor_name"/>
+
+        <EditText
+            android:id="@+id/fragment_add_vendor_phone"
+            android:inputType="phone"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="0dp"
+            android:imeOptions="flagNoExtractUi"
+            android:maxLength="11"
+            android:hint="@string/hint_vendor_phone"/>
+
+        <EditText
+            android:id="@+id/fragment_add_vendor_email"
+            android:inputType="textEmailAddress"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:imeOptions="flagNoExtractUi"
+            android:maxLength="45"
+            android:hint="@string/hint_vendor_email"/>
+
+        <EditText
+            android:id="@+id/fragment_add_vendor_street"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:inputType="textCapWords"
+            android:imeOptions="flagNoExtractUi"
+            android:maxLength="40"
+            android:hint="@string/hint_vendor_street"/>
+
+        <EditText
+            android:id="@+id/fragment_add_vendor_city"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:inputType="textCapWords"
+            android:imeOptions="flagNoExtractUi"
+            android:maxLength="20"
+            android:hint="@string/hint_vendor_city"/>
+
+        <Spinner
+            android:id="@+id/fragment_add_vendor_state"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="-68dp"
+            android:imeOptions="flagNoExtractUi"
+            android:hint="@string/hint_vendor_state"/>
+
+        <EditText
+            android:id="@+id/fragment_add_vendor_zipcode"
+            android:inputType="number"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:imeOptions="flagNoExtractUi"
+            android:maxLength="5"
+            android:hint="@string/hint_vendor_zipcode"/>
+
+    </LinearLayout>
+</ScrollView>

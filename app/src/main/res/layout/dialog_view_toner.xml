@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:id="@+id/fragment_view_toner_image"
+        android:layout_width="97dp"
+        android:layout_height="91dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        app:srcCompat="@drawable/ic_toner" />
+
+    <TextView
+        android:id="@+id/fragment_view_toner_make"
+        android:layout_width="220dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/fragment_view_toner_model"
+        android:layout_width="220dp"
+        android:layout_gravity="center"
+        android:textSize="14sp"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/fragment_view_toner_color"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/fragment_view_toner_tmodel"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/fragment_view_toner_black"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="1dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/fragment_view_toner_cyan"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="3dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/fragment_view_toner_yellow"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/fragment_view_toner_magenta"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

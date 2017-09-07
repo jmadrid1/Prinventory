@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/fragment_update_vendor_name"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:inputType="textCapWords"
+        android:maxLength="25"
+        android:hint="@string/hint_vendor_name"/>
+
+    <EditText
+        android:id="@+id/fragment_update_vendor_phone"
+        android:inputType="phone"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:maxLength="11"
+        android:hint="@string/hint_vendor_phone"/>
+
+    <EditText
+        android:id="@+id/fragment_update_vendor_email"
+        android:inputType="textEmailAddress"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:maxLength="45"
+        android:hint="@string/hint_vendor_email"/>
+
+    <EditText
+        android:id="@+id/fragment_update_vendor_street"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:inputType="textCapWords"
+        android:maxLength="50"
+        android:hint="@string/hint_vendor_street"/>
+
+    <EditText
+        android:id="@+id/fragment_update_vendor_city"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:inputType="textCapWords"
+        android:maxLength="20"
+        android:hint="@string/hint_vendor_city"/>
+
+    <Spinner
+        android:id="@+id/fragment_update_vendor_state"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginStart="-70dp"
+        android:layout_marginLeft="70dp" />
+
+
+    <EditText
+        android:id="@+id/fragment_update_vendor_zipcode"
+        android:inputType="number"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:maxLength="5"
+        android:hint="@string/hint_vendor_zipcode"/>
+
+</LinearLayout>

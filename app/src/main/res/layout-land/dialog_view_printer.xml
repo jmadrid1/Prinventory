@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/fragment_view_printer_image"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_gravity="center"
+        android:paddingBottom="10dp"
+        app:srcCompat="@drawable/ic_printer" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:scrollbars="vertical"
+            android:scrollbarStyle="insideOverlay"
+            android:scrollbarAlwaysDrawVerticalTrack="true">
+
+            <TextView
+                android:id="@+id/fragment_view_printer_make"
+                android:layout_width="220dp"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:layout_height="22dp" />
+
+            <TextView
+                android:id="@+id/fragment_view_printer_model"
+                android:layout_width="220dp"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:layout_height="22dp" />
+
+            <TextView
+                android:id="@+id/fragment_view_printer_serial"
+                android:layout_width="220dp"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:layout_height="22dp" />
+
+            <TextView
+                android:id="@+id/fragment_view_printer_color"
+                android:layout_width="220dp"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:layout_height="22dp" />
+
+            <TextView
+                android:id="@+id/fragment_view_printer_status"
+                android:layout_width="220dp"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:layout_height="22dp" />
+
+            <TextView
+                android:id="@+id/fragment_view_printer_owner"
+                android:layout_width="220dp"
+                android:layout_height="22dp"
+                android:textSize="16dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/fragment_view_printer_dept"
+                android:layout_width="250dp"
+                android:layout_height="22dp"
+                android:textSize="16sp"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/fragment_view_printer_location"
+                android:layout_width="220dp"
+                android:layout_height="22dp"
+                android:textSize="16sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/fragment_view_printer_floor"
+                android:layout_width="220dp"
+                android:layout_height="22dp"
+                android:textSize="16sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/fragment_view_printer_ip"
+                android:layout_width="220dp"
+                android:layout_height="22dp"
+                android:textSize="16sp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

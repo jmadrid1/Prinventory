@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_view_printer"
+        android:title="@string/context_menu_view_printer"/>
+
+    <item
+        android:id="@+id/menu_edit_printer"
+        android:title="@string/context_menu_edit_printer"/>
+
+    <item
+        android:id="@+id/menu_delete_printer"
+        android:title="@string/context_menu_delete_printer"/>
+
+</menu>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/fragment_add_toner_make"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="9dp"
+        android:inputType="textCapWords"
+        android:hint="@string/hint_toner_make"/>
+
+    <EditText
+        android:id="@+id/fragment_add_toner_model"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="48dp"
+        android:inputType="textCapWords"
+        android:hint="@string/hint_toner_model"/>
+
+    <Spinner
+        android:id="@+id/fragment_add_toner_color"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="94dp"
+        android:layout_marginLeft="0dp"
+        />
+
+    <EditText
+        android:id="@+id/fragment_add_toner_tmodel"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="124dp"
+        android:inputType="textCapWords"
+        android:hint="@string/hint_toner_tmodel"/>
+
+    <EditText
+        android:id="@+id/fragment_add_toner_black"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="166dp"
+        android:inputType="number"
+        android:maxLength="2"
+        android:hint="@string/hint_toner_black"/>
+
+    <EditText
+        android:id="@+id/fragment_add_toner_cyan"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="206dp"
+        android:inputType="number"
+        android:maxLength="2"
+        android:hint="@string/hint_toner_cyan"/>
+
+    <EditText
+        android:id="@+id/fragment_add_toner_yellow"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="246dp"
+        android:inputType="number"
+        android:maxLength="2"
+        android:hint="@string/hint_toner_yellow"/>
+
+    <EditText
+        android:id="@+id/fragment_add_toner_magenta"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="286dp"
+        android:inputType="number"
+        android:maxLength="2"
+        android:hint="@string/hint_toner_magenta"/>
+
+</RelativeLayout>
