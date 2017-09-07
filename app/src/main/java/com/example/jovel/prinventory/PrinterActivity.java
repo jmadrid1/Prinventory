@@ -151,7 +151,7 @@ public class PrinterActivity extends FragmentActivity {
     }
 
     /*
-    Terminates application while on Printers Tab
+    Exits the application when on Printers Tab
      */
     @Override
     public void onBackPressed() {
