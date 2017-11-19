@@ -3,12 +3,12 @@ package com.example.jovel.prinventory.fragments;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,46 +26,39 @@ import com.example.jovel.prinventory.models.Printer;
 
 public class PrinterUpdateFragment extends AppCompatDialogFragment {
 
+    private static final String ARG_KEY ="id";
+
     private Printer mPrinter;
-    private EditText mMake;
-    private EditText mModel;
-    private EditText mSerial;
-    private Spinner mColor;
-    private Spinner mStatus;
-    private EditText mOwner;
-    private EditText mDept;
-    private EditText mLocation;
-    private EditText mFloor;
-    private EditText mIp;
-    private Database db;
+    private EditText mMake, mModel, mSerial, mOwner, mDept, mLocation, mFloor;
+    private Database mDatabase;
 
     /*
     The received ID/Position from the adapter
      */
     public static PrinterUpdateFragment newInstance(int id){
+
         Bundle args = new Bundle();
-        args.putInt("ID", id);
+        args.putInt(ARG_KEY, id);
 
         PrinterUpdateFragment frag = new PrinterUpdateFragment();
         frag.setArguments(args);
 
-        Log.i("newInstance ID: ", "This is the passed ID --> " + id);
         return frag;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_update_printer, null);
 
-        db = new Database(getActivity());
+        mDatabase = new Database(getActivity());
 
         Bundle args = getArguments();
-        int mId = args.getInt("ID");
+        int id = args.getInt(ARG_KEY);
 
-        /*
-        mPrinter will be used to populate the fields for editing/updating
-         */
-        mPrinter = db.getPrinter(mId+1);
+        // mPrinter will be used to populate the fields for editing/updating
+        mPrinter = mDatabase.getPrinter(id);
 
         mMake = (EditText) v.findViewById(R.id.fragment_update_printer_make);
         mMake.setText(mPrinter.getMake());
@@ -118,10 +111,8 @@ public class PrinterUpdateFragment extends AppCompatDialogFragment {
             }
         });
 
-        /*
-        This spinner is for specifying if a printer utilizes colored toner or only black & white toner
-         */
-        mColor = (Spinner)v.findViewById(R.id.fragment_update_printer_color);
+        // This spinner is for specifying if a printer utilizes colored toner or only black & white toner
+        Spinner mColor = (Spinner)v.findViewById(R.id.fragment_update_printer_color);
         ArrayAdapter<CharSequence> colorAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.toner_array_color, R.layout.support_simple_spinner_dropdown_item);
         colorAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         mColor.setAdapter(colorAdapter);
@@ -138,10 +129,8 @@ public class PrinterUpdateFragment extends AppCompatDialogFragment {
             }
         });
 
-        /*
-        This spinner is for identifying a newly added printer as active or inactive
-         */
-        mStatus = (Spinner)v.findViewById(R.id.fragment_update_printer_status);
+        // This spinner is for identifying a newly added printer as active or inactive
+        Spinner mStatus = (Spinner)v.findViewById(R.id.fragment_update_printer_status);
         ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.spinner_array, R.layout.support_simple_spinner_dropdown_item);
         statusAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         mStatus.setAdapter(statusAdapter);
@@ -226,7 +215,7 @@ public class PrinterUpdateFragment extends AppCompatDialogFragment {
             }
         });
 
-        mIp = (EditText) v.findViewById(R.id.fragment_update_printer_ip);
+        EditText mIp = (EditText) v.findViewById(R.id.fragment_update_printer_ip);
         mIp.setText(String.valueOf(mPrinter.getIp())); // double check this if any errors
         mIp.addTextChangedListener(new TextWatcher() {
             @Override
@@ -254,15 +243,15 @@ public class PrinterUpdateFragment extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        isTextEmpty(mMake);
-                        isTextEmpty(mModel);
-                        isTextEmpty(mSerial);
-                        isTextEmpty(mOwner);
-                        isTextEmpty(mDept);
-                        isTextEmpty(mLocation);
-                        isTextEmpty(mFloor);
-                        db.updatePrinter(mPrinter);
+                        checkTextField(mMake);
+                        checkTextField(mModel);
+                        checkTextField(mSerial);
+                        checkTextField(mOwner);
+                        checkTextField(mDept);
+                        checkTextField(mLocation);
+                        checkTextField(mFloor);
 
+                        mDatabase.updatePrinter(mPrinter);
                     }
                 })
                 .setNegativeButton(R.string.btn_cancel, null)
@@ -273,12 +262,11 @@ public class PrinterUpdateFragment extends AppCompatDialogFragment {
     Checks to see if important fields were left
      empty/unanswered and sets text if not addressed
      */
-    private boolean isTextEmpty(EditText et){
+    private void checkTextField(EditText et){
         String text = et.getText().toString();
         if(TextUtils.isEmpty(text)){
             et.setText("Not Specified");
         }
-        return false;
     }
 }
 

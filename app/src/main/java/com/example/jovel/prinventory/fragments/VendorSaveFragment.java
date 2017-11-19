@@ -3,6 +3,7 @@ package com.example.jovel.prinventory.fragments;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.text.Editable;
@@ -26,20 +27,18 @@ import com.example.jovel.prinventory.models.Vendor;
 public class VendorSaveFragment extends AppCompatDialogFragment {
 
     private Vendor mVendor;
-    private EditText mName;
-    private EditText mPhone;
-    private EditText mEmail;
-    private EditText mStreet;
-    private EditText mCity;
+    private EditText mName, mPhone, mEmail, mStreet, mCity, mZipcode;
     private Spinner mState;
-    private EditText mZipcode;
-    private Database db;
+    private Database mDatabase;
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle adddInstanceState) {
+
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_add_vendor, null);
+
         mVendor = new Vendor();
-        db = new Database(getActivity());
+        mDatabase = new Database(getActivity());
 
         mName = (EditText) v.findViewById(R.id.fragment_add_vendor_name);
         mName.addTextChangedListener(new TextWatcher() {
@@ -121,9 +120,7 @@ public class VendorSaveFragment extends AppCompatDialogFragment {
             }
         });
 
-        /*
-        This spinner is for selecting the state of where the vendor is located
-         */
+        // This spinner is for selecting the state of where the vendor is located
         mState = (Spinner) v.findViewById(R.id.fragment_add_vendor_state);
         ArrayAdapter<CharSequence> statesAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.states_array, R.layout.support_simple_spinner_dropdown_item);
         statesAdapter.setDropDownViewResource(R.layout.spinner_layout);
@@ -166,13 +163,14 @@ public class VendorSaveFragment extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        isTextEmpty(mName);
-                        isTextEmpty(mEmail);
-                        isTextEmpty(mStreet);
-                        isTextEmpty(mCity);
+                        checkTextField(mName);
+                        checkTextField(mPhone);
+                        checkTextField(mEmail);
+                        checkTextField(mStreet);
+                        checkTextField(mCity);
+                        checkTextField(mZipcode);
 
-                        db.addVendor(mVendor);
-
+                        mDatabase.addVendor(mVendor);
                     }
                 })
                 .setNegativeButton("Cancel", null)
@@ -183,12 +181,13 @@ public class VendorSaveFragment extends AppCompatDialogFragment {
     Checks to see if important fields were left
     empty/unanswered and sets text if not addressed
      */
-    private boolean isTextEmpty(EditText et){
+    private void checkTextField(EditText et){
         String text = et.getText().toString();
         if(TextUtils.isEmpty(text)){
             et.setText("Not Specified");
         }
-        return false;
     }
+
+    
 
 }

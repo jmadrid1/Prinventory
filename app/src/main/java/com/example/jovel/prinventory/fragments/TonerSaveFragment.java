@@ -3,12 +3,12 @@ package com.example.jovel.prinventory.fragments;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,19 +29,20 @@ public class TonerSaveFragment extends AppCompatDialogFragment {
     private Toner mToner;
     private EditText mMake;
     private EditText mModel;
-    private Spinner mColor;
     private EditText mTModel;
-    private EditText mBlack;
     private EditText mCyan;
     private EditText mYellow;
     private EditText mMagenta;
-    private Database db;
+    private Database mDatabase;
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle adddInstanceState) {
+
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_add_toner, null);
+
         mToner = new Toner();
-        db = new Database(getActivity());
+        mDatabase = new Database(getActivity());
 
         mMake = (EditText) v.findViewById(R.id.fragment_add_toner_make);
         mMake.addTextChangedListener(new TextWatcher() {
@@ -75,10 +76,8 @@ public class TonerSaveFragment extends AppCompatDialogFragment {
             }
         });
 
-        /*
-        Spinner for toggling between the type of toner being registered
-         */
-        mColor = (Spinner)v.findViewById(R.id.fragment_add_toner_color);
+        //Spinner for toggling between the type of toner being registered
+        Spinner mColor = (Spinner) v.findViewById(R.id.fragment_add_toner_color);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.toner_array_color, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         mColor.setAdapter(adapter);
@@ -121,7 +120,7 @@ public class TonerSaveFragment extends AppCompatDialogFragment {
             }
         });
 
-        mBlack = (EditText) v.findViewById(R.id.fragment_add_toner_black);
+        EditText mBlack = (EditText) v.findViewById(R.id.fragment_add_toner_black);
         mBlack.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -211,13 +210,11 @@ public class TonerSaveFragment extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        isTextEmpty(mMake);
-                        isTextEmpty(mMake);
-                        isTextEmpty(mTModel);
+                        checkTextField(mMake);
+                        checkTextField(mModel);
+                        checkTextField(mTModel);
 
-                        db.addToner(mToner);
-                        Log.d("Saving Frag", mMake.getText().toString());
-
+                        mDatabase.addToner(mToner);
                     }
                 })
                 .setNegativeButton(R.string.btn_cancel, null)
@@ -228,12 +225,11 @@ public class TonerSaveFragment extends AppCompatDialogFragment {
     Checks to see if important fields were left
      empty/unanswered and sets text if not addressed
      */
-    private boolean isTextEmpty(EditText et){
+    private void checkTextField(EditText et){
         String text = et.getText().toString();
         if(TextUtils.isEmpty(text)){
             et.setText("Not Specified");
         }
-        return false;
     }
 
 }

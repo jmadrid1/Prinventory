@@ -3,6 +3,7 @@ package com.example.jovel.prinventory.fragments;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.text.Editable;
@@ -26,44 +27,38 @@ import com.example.jovel.prinventory.models.Toner;
 
 public class TonerUpdateFragment extends AppCompatDialogFragment {
 
+    private static final String ARG_KEY ="id";
+
     private Toner mToner;
-    private EditText mMake;
-    private EditText mModel;
-    private Spinner mColor;
-    private EditText mTModel;
-    private EditText mBlack;
-    private EditText mCyan;
-    private EditText mYellow;
-    private EditText mMagenta;
-    private Database db;
+    private EditText mMake, mModel, mTModel, mCyan, mYellow, mMagenta;
+    private Database mDatabase;
 
     /*
     The received ID/Position from the adapter
      */
     public static TonerUpdateFragment newInstance(int id){
         Bundle args = new Bundle();
-        args.putInt("ID", id);
+        args.putInt(ARG_KEY, id);
 
         TonerUpdateFragment frag = new TonerUpdateFragment();
         frag.setArguments(args);
 
-        Log.i("newInstance ID: ", "This is the passed ID --> " + id);
         return frag;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_update_toner, null);
 
-        db = new Database(getActivity());
+        mDatabase = new Database(getActivity());
 
         Bundle args = getArguments();
-        int mId = args.getInt("ID");
+        int id = args.getInt(ARG_KEY);
 
-        /*
-        mToner will be used to populate the fields for editing/updating
-         */
-        mToner = db.getToner(mId+1);
+        // mToner will be used to populate the fields for editing/updating
+        mToner = mDatabase.getToner(id);
 
         mMake = (EditText) v.findViewById(R.id.fragment_update_toner_make);
         mMake.setText(mToner.getMake());
@@ -99,10 +94,8 @@ public class TonerUpdateFragment extends AppCompatDialogFragment {
             }
         });
 
-        /*
-        Spinner for toggling between the type of toner being registered
-         */
-        mColor = (Spinner)v.findViewById(R.id.fragment_update_toner_color);
+        // Spinner for toggling between the type of toner being registered
+        Spinner mColor = (Spinner) v.findViewById(R.id.fragment_update_toner_color);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.toner_array_color, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         mColor.setAdapter(adapter);
@@ -146,7 +139,7 @@ public class TonerUpdateFragment extends AppCompatDialogFragment {
             }
         });
 
-        mBlack = (EditText) v.findViewById(R.id.fragment_update_toner_black);
+        EditText mBlack = (EditText) v.findViewById(R.id.fragment_update_toner_black);
         mBlack.setText(String.valueOf(mToner.getBlack()));
         mBlack.addTextChangedListener(new TextWatcher() {
             @Override
@@ -237,11 +230,11 @@ public class TonerUpdateFragment extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        isTextEmpty(mMake);
-                        isTextEmpty(mMake);
-                        isTextEmpty(mTModel);
-                        db.updateToner(mToner);
+                        checkTextField(mMake);
+                        checkTextField(mModel);
+                        checkTextField(mTModel);
 
+                        mDatabase.updateToner(mToner);
                     }
                 })
                 .setNegativeButton(R.string.btn_cancel, null)
@@ -252,12 +245,11 @@ public class TonerUpdateFragment extends AppCompatDialogFragment {
     Checks to see if important fields were left
      empty/unanswered and sets text if not addressed
      */
-    private boolean isTextEmpty(EditText et){
+    private void checkTextField(EditText et){
         String text = et.getText().toString();
         if(TextUtils.isEmpty(text)){
             et.setText("Not Specified");
         }
-        return false;
     }
 }
 

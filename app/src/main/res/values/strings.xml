@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Prinventory</string>
+    <string name="title_activity_printer">Printer Dashboard</string>
+    <string name="title_activity_toner">Toner Dashboard</string>
+    <string name="title_activity_vendor">Vendor Dashboard</string>
 
     //Hints
     <string name="hint_printer_make">Enter Make of Printer</string>
@@ -61,9 +64,6 @@
     <string name="dialog_title_email_vendor">No Email Application Found</string>
     <string name="dialog_message_email_vendor">There was no email application found or selected.</string>
 
-    <string name="title_activity_printer_details">PrinterDetailsActivity</string>
-    <string name="title_activity_printer">PrinterActivity</string>
-
     //list text
     <string name="list_printer_empty">There are currently no printers in this list</string>
     <string name="list_toner_empty">There are currently no toners in this list</string>
@@ -81,10 +81,6 @@
     <string name="list_vendor_design_name">Name:</string>
     <string name="list_vendor_design_phone">Phone:</string>
     <string name="list_vendor_design_email">Email:</string>
-
-    <string name="list_printer_model">Model </string>
-    <string name="title_activity_toner">TonerActivity</string>
-    <string name="title_activity_vendor">VendorActivity</string>
 
     //navigation
     <string name="nav_printer">Printers</string>

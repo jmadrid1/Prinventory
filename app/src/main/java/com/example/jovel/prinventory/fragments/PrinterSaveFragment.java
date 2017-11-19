@@ -3,12 +3,12 @@ package com.example.jovel.prinventory.fragments;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,23 +27,17 @@ import com.example.jovel.prinventory.models.Printer;
 public class PrinterSaveFragment extends AppCompatDialogFragment {
 
     private Printer mPrinter;
-    private EditText mMake;
-    private EditText mModel;
-    private EditText mSerial;
-    private Spinner mColor;
-    private Spinner mStatus;
-    private EditText mOwner;
-    private EditText mDept;
-    private EditText mLocation;
-    private EditText mFloor;
-    private EditText mIp;
-    private Database db;
+    private EditText mMake, mModel, mSerial, mOwner, mDept, mLocation, mFloor;
+    private Database mDatabase;
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_add_printer, null);
+        
         mPrinter = new Printer();
-        db = new Database(getActivity());
+        mDatabase = new Database(getActivity());
 
         mMake = (EditText)v.findViewById(R.id.fragment_add_printer_make);
         mMake.addTextChangedListener(new TextWatcher() {
@@ -93,10 +87,8 @@ public class PrinterSaveFragment extends AppCompatDialogFragment {
             }
         });
 
-        /*
-        This spinner is for specifying if a printer utilizes colored toner or only black & white toner
-         */
-        mColor = (Spinner)v.findViewById(R.id.fragment_add_printer_color);
+        // This spinner is for specifying if a printer utilizes colored toner or only black & white toner
+        Spinner mColor = (Spinner) v.findViewById(R.id.fragment_add_printer_color);
         ArrayAdapter<CharSequence> colorAdapter = ArrayAdapter.createFromResource(getContext(), R.array.toner_array_color, R.layout.support_simple_spinner_dropdown_item);
         colorAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         mColor.setAdapter(colorAdapter);
@@ -112,10 +104,8 @@ public class PrinterSaveFragment extends AppCompatDialogFragment {
             }
         });
 
-        /*
-        This spinner is for identifying a newly added printer as active or inactive
-         */
-        mStatus = (Spinner)v.findViewById(R.id.fragment_add_printer_status);
+        // This spinner is for identifying a newly added printer as active or inactive
+        Spinner mStatus = (Spinner) v.findViewById(R.id.fragment_add_printer_status);
         ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(getContext(), R.array.spinner_array, R.layout.support_simple_spinner_dropdown_item);
         statusAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         mStatus.setAdapter(statusAdapter);
@@ -193,11 +183,9 @@ public class PrinterSaveFragment extends AppCompatDialogFragment {
             public void afterTextChanged(Editable s) {  }
         });
 
-        mIp = (EditText)v.findViewById(R.id.fragment_add_printer_ip);
+        EditText mIp = (EditText) v.findViewById(R.id.fragment_add_printer_ip);
 
-        /*
-         * Checks to see if IP field is empty and is so assigns a zero alternatively
-         */
+        // Checks to see if IP field is empty and is so assigns a zero alternatively
         String text = mIp.getText().toString();
         if(text.length()== 0){
             text = "0";
@@ -221,7 +209,6 @@ public class PrinterSaveFragment extends AppCompatDialogFragment {
             public void afterTextChanged(Editable s) { }
         });
 
-
         return new AlertDialog.Builder(getActivity())
                 .setView(v)
                 .setTitle(R.string.dialog_title_save_printer)
@@ -229,18 +216,15 @@ public class PrinterSaveFragment extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        isTextEmpty(mMake);
-                        isTextEmpty(mModel);
-                        isTextEmpty(mSerial);
-                        isTextEmpty(mOwner);
-                        isTextEmpty(mDept);
-                        isTextEmpty(mLocation);
-                        isTextEmpty(mFloor);
+                        checkTextField(mMake);
+                        checkTextField(mModel);
+                        checkTextField(mSerial);
+                        checkTextField(mOwner);
+                        checkTextField(mDept);
+                        checkTextField(mLocation);
+                        checkTextField(mFloor);
 
-                        db.addPrinter(mPrinter);
-                        Log.d("Saving Frag", mMake.getText().toString());
-                        Log.i("Saving", "Printer was added.");
-
+                        mDatabase.addPrinter(mPrinter);
                     }
                 })
 
@@ -252,12 +236,11 @@ public class PrinterSaveFragment extends AppCompatDialogFragment {
     Checks to see if important fields were left
      empty/unanswered and sets text if not addressed
      */
-    private boolean isTextEmpty(EditText et){
+    private void checkTextField(EditText et){
         String text = et.getText().toString();
         if(TextUtils.isEmpty(text)){
             et.setText("Not Specified");
         }
-        return false;
     }
 
 }

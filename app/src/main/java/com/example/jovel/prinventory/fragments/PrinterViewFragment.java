@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,65 +21,52 @@ import com.example.jovel.prinventory.models.Printer;
 
 public class PrinterViewFragment extends AppCompatDialogFragment {
 
-    private Printer mPrinter;
-    private ImageView mImage;
-    private TextView mMake;
-    private TextView mModel;
-    private TextView mSerial;
-    private TextView mColor;
-    private TextView mStatus;
-    private TextView mOwner;
-    private TextView mDept;
-    private TextView mLocation;
-    private TextView mFloor;
-    private TextView mIp;
-    private Database db;
+    private static final String ARG_KEY ="id";
 
     /*
     The received ID/Position from the adapter
      */
     public static PrinterViewFragment newInstance(int id){
+
         Bundle args = new Bundle();
-        args.putInt("ID", id);
+        args.putInt(ARG_KEY, id);
 
         PrinterViewFragment frag = new PrinterViewFragment();
         frag.setArguments(args);
 
-        Log.i("newInstance ID: ", "This is the passed ID --> " + id);
         return frag;
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_view_printer, null);
 
-        db = new Database(getActivity());
+        Database mDatabase = new Database(getActivity());
 
         Bundle args = getArguments();
-        int mId = args.getInt("ID");
+        int id = args.getInt(ARG_KEY);
 
-        /*
-        mPrinter will be used to populate the fields for editing/updating
-         */
-        mPrinter = db.getPrinter(mId+1);
+        //mPrinter will be used to populate the textviews
+        Printer mPrinter = mDatabase.getPrinter(id);
 
-        mImage = (ImageView)v.findViewById(R.id.fragment_view_printer_image);
-        mImage.setImageResource(R.drawable.ic_printer);
+        ImageView mIcon = (ImageView) v.findViewById(R.id.fragment_view_printer_image);
+        mIcon.setImageResource(R.drawable.ic_printer);
 
-        mMake = (TextView) v.findViewById(R.id.fragment_view_printer_make);
+        TextView mMake = (TextView) v.findViewById(R.id.fragment_view_printer_make);
         String format = "Make:   " + mPrinter.getMake();
         mMake.setText(format);
 
-        mModel = (TextView) v.findViewById(R.id.fragment_view_printer_model);
+        TextView mModel = (TextView) v.findViewById(R.id.fragment_view_printer_model);
         format = "Model:  " + mPrinter.getModel();
         mModel.setText(format);
 
-        mSerial = (TextView) v.findViewById(R.id.fragment_view_printer_serial);
+        TextView mSerial = (TextView) v.findViewById(R.id.fragment_view_printer_serial);
         format = "Serial:  " + mPrinter.getSerial();
         mSerial.setText(format);
 
-        mColor = (TextView)v.findViewById(R.id.fragment_view_printer_color);
+        TextView mColor = (TextView) v.findViewById(R.id.fragment_view_printer_color);
         if(mPrinter.getColor()== 0){
             format = "Color:    B/W";
             mColor.setText(format);
@@ -89,7 +75,7 @@ public class PrinterViewFragment extends AppCompatDialogFragment {
             mColor.setText(format);
         }
 
-        mStatus = (TextView)v.findViewById(R.id.fragment_view_printer_status);
+        TextView mStatus = (TextView) v.findViewById(R.id.fragment_view_printer_status);
         if(mPrinter.getStatus()== 0){
             format = "Status:  Inactive";
             mStatus.setText(format);
@@ -98,23 +84,23 @@ public class PrinterViewFragment extends AppCompatDialogFragment {
             mStatus.setText(format);
         }
 
-        mOwner = (TextView) v.findViewById(R.id.fragment_view_printer_owner);
+        TextView mOwner = (TextView) v.findViewById(R.id.fragment_view_printer_owner);
         format = "Owner:  " + mPrinter.getOwnership();
         mOwner.setText(format);
 
-        mDept = (TextView) v.findViewById(R.id.fragment_view_printer_dept);
+        TextView mDept = (TextView) v.findViewById(R.id.fragment_view_printer_dept);
         format = "Department:   " + mPrinter.getDepartment();
         mDept.setText(format);
 
-        mLocation = (TextView) v.findViewById(R.id.fragment_view_printer_location);
+        TextView mLocation = (TextView) v.findViewById(R.id.fragment_view_printer_location);
         format = "Location:  " + mPrinter.getLocation();
         mLocation.setText(format);
 
-        mFloor = (TextView) v.findViewById(R.id.fragment_view_printer_floor);
+        TextView mFloor = (TextView) v.findViewById(R.id.fragment_view_printer_floor);
         format = "Floor:   " + mPrinter.getFloor();
         mFloor.setText(format);
 
-        mIp = (TextView) v.findViewById(R.id.fragment_view_printer_ip);
+        TextView mIp = (TextView) v.findViewById(R.id.fragment_view_printer_ip);
         format = "IP:  " + mPrinter.getIp();
         mIp.setText(format);
 
@@ -124,7 +110,6 @@ public class PrinterViewFragment extends AppCompatDialogFragment {
                 .setPositiveButton(R.string.btn_close, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                     }
                 })
                 .create();

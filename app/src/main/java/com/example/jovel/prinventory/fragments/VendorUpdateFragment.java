@@ -3,12 +3,12 @@ package com.example.jovel.prinventory.fragments;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,43 +26,41 @@ import com.example.jovel.prinventory.models.Vendor;
 
 public class VendorUpdateFragment extends AppCompatDialogFragment {
 
+    private static final String ARG_KEY ="id";
+
     private Vendor mVendor;
-    private EditText mName;
-    private EditText mPhone;
-    private EditText mEmail;
-    private EditText mStreet;
-    private EditText mCity;
+    private EditText mName, mPhone, mEmail, mStreet, mCity, mZipcode;
     private Spinner mState;
-    private EditText mZipcode;
+
     private Database db;
 
     /*
     The received ID/Position from the adapter
      */
     public static VendorUpdateFragment newInstance(int id){
+
         Bundle args = new Bundle();
-        args.putInt("ID", id);
+        args.putInt(ARG_KEY, id);
 
         VendorUpdateFragment frag = new VendorUpdateFragment();
         frag.setArguments(args);
 
-        Log.i("newInstance ID: ", "This is the passed ID --> " + id);
         return frag;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_update_vendor, null);
 
         db = new Database(getActivity());
 
         Bundle args = getArguments();
-        int mId = args.getInt("ID");
+        int id = args.getInt(ARG_KEY);
 
-        /*
-        mVendor will be used to populate the fields for editing/updating
-         */
-        mVendor = db.getVendor(mId+1); // ID for printer will go here and populate textviews
+        //mVendor will be used to populate the fields for editing/updating
+        mVendor = db.getVendor(id); // ID for printer will go here and populate textviews
 
         mName = (EditText) v.findViewById(R.id.fragment_update_vendor_name);
         mName.setText(mVendor.getName());
@@ -149,9 +147,8 @@ public class VendorUpdateFragment extends AppCompatDialogFragment {
             }
         });
 
-        /*
-        This spinner is for selecting the state of where the vendor is located
-         */
+        // This spinner is for selecting the state of where the vendor is located
+
         mState = (Spinner) v.findViewById(R.id.fragment_update_vendor_state);
         ArrayAdapter<CharSequence> statesAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.states_array, R.layout.support_simple_spinner_dropdown_item);
         statesAdapter.setDropDownViewResource(R.layout.spinner_layout);
@@ -195,12 +192,14 @@ public class VendorUpdateFragment extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        isTextEmpty(mName);
-                        isTextEmpty(mEmail);
-                        isTextEmpty(mStreet);
-                        isTextEmpty(mCity);
-                        db.updateVendor(mVendor);
+                        checkTextField(mName);
+                        checkTextField(mPhone);
+                        checkTextField(mEmail);
+                        checkTextField(mStreet);
+                        checkTextField(mCity);
+                        checkTextField(mZipcode);
 
+                        db.updateVendor(mVendor);
                     }
                 })
                 .setNegativeButton(R.string.btn_cancel, null)
@@ -228,12 +227,11 @@ public class VendorUpdateFragment extends AppCompatDialogFragment {
     Checks to see if important fields were left
      empty/unanswered and sets text if not addressed
      */
-    private boolean isTextEmpty(EditText et){
+    private void checkTextField(EditText et){
         String text = et.getText().toString();
         if(TextUtils.isEmpty(text)){
             et.setText("Not Specified");
         }
-        return false;
     }
 
 }
